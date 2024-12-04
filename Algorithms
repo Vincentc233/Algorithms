@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Algorithms {
     private static File f;
@@ -15,6 +16,7 @@ public class Algorithms {
         int least = least();
         int sum = sum();
         double count = count();
+        int mode = mode();
         System.out.println("Odds: " + odds);
         System.out.println("Evens: "+evens);
         System.out.println("DoubleDigits: " +twoDigits);
@@ -23,6 +25,7 @@ public class Algorithms {
         System.out.println("Least: " + least);
         System.out.println("Sum: " + sum);
         System.out.println("Average: " + sum/count);
+        System.out.println("Mode: " + mode);
         s.close();
     }
 
@@ -48,7 +51,7 @@ public class Algorithms {
     public static int twoDigits() throws FileNotFoundException{
         s = new Scanner(f);
         int twoDigits = 0;
-        while (s.hasNext()) {  
+        while (s.hasNext()) {
             if (String.valueOf(s.nextInt()).length() == 2){
                 twoDigits++;
             }
@@ -58,7 +61,7 @@ public class Algorithms {
     public static int greater500() throws FileNotFoundException{
         s = new Scanner(f);
         int greater500 = 0;
-        while (s.hasNext()) {  
+        while (s.hasNext()) {
             if (s.nextInt()>500){
                 greater500++;
             }
@@ -68,7 +71,7 @@ public class Algorithms {
     public static int greatest() throws FileNotFoundException{
         s = new Scanner(f);
         int greatest = 0;
-        while (s.hasNext()) {  
+        while (s.hasNext()) {
             if (s.nextInt()>greatest){
                 greatest = s.nextInt();
             }
@@ -78,7 +81,7 @@ public class Algorithms {
     public static int least() throws FileNotFoundException{
         s = new Scanner(f);
         int least = 1000;
-        while (s.hasNext()) {  
+        while (s.hasNext()) {
             if (s.nextInt()<least){
                 least = s.nextInt();
             }
@@ -88,7 +91,7 @@ public class Algorithms {
     public static int sum() throws FileNotFoundException{
         s = new Scanner(f);
         int sum = 0;
-        while (s.hasNext()) {  
+        while (s.hasNext()) {
             sum += s.nextInt();
         }
         return sum;
@@ -96,11 +99,28 @@ public class Algorithms {
     public static double count() throws FileNotFoundException{
         s = new Scanner(f);
         double count = 0;
-        while (s.hasNext()) {  
+        while (s.hasNext()) {
             count++;
             s.nextInt();
         }
         return count;
+    }
+
+    public static int mode() throws FileNotFoundException{
+        s = new Scanner(f);
+        int currentInt;
+        int counting = 0;
+        ArrayList<Integer> counts = new ArrayList<Integer>();
+        while (s.hasNext()) {
+            currentInt = s.nextInt();
+            while (s.hasNext()){
+                if(currentInt == s.nextInt()) counting++;
+            }
+            counts.add(counting);
+        }
+        for(int i = 0; i <= ; ){
+
+        }
     }
 
 }
