@@ -1,7 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Algorithms {
     private static File f;
@@ -16,7 +16,7 @@ public class Algorithms {
         int least = least();
         int sum = sum();
         double count = count();
-        int mode = mode();
+        String mode = mode();
         System.out.println("Odds: " + odds);
         System.out.println("Evens: "+evens);
         System.out.println("DoubleDigits: " +twoDigits);
@@ -106,22 +106,36 @@ public class Algorithms {
         return count;
     }
 
-    public static int mode() throws FileNotFoundException{
+    public static String mode() throws FileNotFoundException{
         s = new Scanner(f);
         int currentInt;
-        int counting = 0;
-        ArrayList<Integer> counts = new ArrayList<Integer>();
+        int biggest = 0;
+        String mode = ""; 
+        ArrayList<Integer> counts = new ArrayList<>();
+        ArrayList<Integer> ints = new ArrayList<>();
+        ArrayList<Integer> indexBiggest = new ArrayList<>();
         while (s.hasNext()) {
             currentInt = s.nextInt();
-            while (s.hasNext()){
-                if(currentInt == s.nextInt()) counting++;
+            int index = ints.indexOf(currentInt);
+            if(index == -1){
+                ints.add(currentInt);
+                counts.add(1); 
             }
-            counts.add(counting);
+            else if(index > -1){
+                int temp = counts.get(index);
+                counts.set(index, temp+1);
+            }
         }
-        for(int i = 0; i <= ; ){
-
+        for(int i =0; i< counts.size(); i++){
+            if(counts.get(i) > biggest) {
+                biggest = counts.get(i);
+            }
         }
+        for(int i =0; i< counts.size(); i++) if(counts.get(i) == biggest) indexBiggest.add(i);
+        for(int i =0; i<indexBiggest.size(); i++){
+            mode += ints.get(indexBiggest.get(i)) + ", ";
+        }
+        return mode;
     }
 
 }
-
